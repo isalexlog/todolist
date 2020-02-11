@@ -11,13 +11,11 @@ import hs.tasklistie.auth.model.User;
 import hs.tasklistie.auth.web.ApiResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-//@Profile("h2")
 @Transactional
 @Service
 public class UserServiceImpl implements UserService {
@@ -51,6 +49,6 @@ public class UserServiceImpl implements UserService {
         if(!encoder.matches(loginDto.getPassword(), user.getPassword())) {
             throw new WrongPasswordException();
         }
-        return new ApiResponse(200, "Sie sind jetzt eingeloggt!", null) ;
+        return new ApiResponse(200, "Sie sind jetzt eingeloggt!", user.getUserId()) ;
     }
 }

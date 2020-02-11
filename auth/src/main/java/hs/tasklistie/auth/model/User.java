@@ -14,6 +14,9 @@ public class User {
     @JsonIgnore
     private String password;
 
+    public User() { }
+
+
     public long getUserId() {
         return userId;
     }
